@@ -1,0 +1,4 @@
+flask==2.3.3
+pandas==2.0.3
+chromadb==0.4.15
+ollama==0.1.7

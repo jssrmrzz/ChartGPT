@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Database Statistics - Medical Document Search{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-info text-white">
+                <h4 class="mb-0"><i class="fas fa-chart-bar"></i> Database Statistics</h4>
+            </div>
+            <div class="card-body">
+                {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i> {{ error }}
+                </div>
+                {% else %}
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h2 class="text-primary">{{ total_documents }}</h2>
+                                <p class="text-muted mb-0">Total Medical Documents</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h2 class="text-success">{{ collection_name }}</h2>
+                                <p class="text-muted mb-0">Collection Name</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h5><i class="fas fa-info-circle"></i> System Information</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Vector Database
+                            <span class="badge bg-primary rounded-pill">ChromaDB</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Embedding Model
+                            <span class="badge bg-success rounded-pill">nomic-embed-text</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Vector Dimensions
+                            <span class="badge bg-info rounded-pill">768</span>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                
+                <div class="mt-4">
+                    <a href="{{ url_for('index') }}" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Start Searching
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

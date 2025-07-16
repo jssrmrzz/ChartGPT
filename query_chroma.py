@@ -16,7 +16,7 @@ collection = client.get_collection(
 )
 
 # Sample user query
-query = "patient with lung cancer and low hemoglobin"
+query = "patient heart attack"
 results = collection.query(
     query_texts=[query],
     n_results=3
