@@ -70,10 +70,9 @@ You’ll be prompted to enter your query (e.g., "shortness of breath after surge
 ✅ Summary
 
 This project allows for:
-	•	Fast and meaningful search of clinical notes.
-	•	Finding similar cases or relevant context in large collections of medical records.
-	•	A foundation for building intelligent medical search assistants or decision-support tools.
- 	•	Dataset used: https://www.kaggle.com/datasets/ihssanened/mimic-iii-clinical-databaseopen-access/data
-
+* Fast and meaningful search of clinical notes.
+* Finding similar cases or relevant context in large collections of medical records.
+* A foundation for building intelligent medical search assistants or decision-support tools.
+* Dataset used: https://www.kaggle.com/datasets/ihssanened/mimic-iii-clinical-databaseopen-access/data
 
 ⸻
