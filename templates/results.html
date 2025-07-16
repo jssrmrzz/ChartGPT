@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}Search Results - Medical Document Search{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <!-- Search Summary -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="fas fa-search"></i> Search Results for: 
+                    <span class="text-primary">"{{ query }}"</span>
+                </h5>
+                {% if results %}
+                    <p class="text-muted mb-0">
+                        Found {{ results|length }} result(s)
+                        {% if patient_id %} for patient ID {{ patient_id }}{% endif %}
+                        {% if start_date or end_date %} 
+                            for dates 
+                            {% if start_date %}from {{ start_date }}{% endif %}
+                            {% if end_date %}to {{ end_date }}{% endif %}
+                        {% endif %}
+                    </p>
+                {% endif %}
+                
+                <div class="mt-3">
+                    <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-arrow-left"></i> New Search
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Error Message -->
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            <i class="fas fa-exclamation-triangle"></i> {{ error }}
+        </div>
+        {% endif %}
+
+        <!-- Results -->
+        {% if results %}
+        <div class="row">
+            {% for result in results %}
+            <div class="col-12 mb-4">
+                <div class="card result-card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="mb-0">
+                                <i class="fas fa-file-medical-alt"></i> 
+                                Result #{{ result.rank }}
+                                <span class="badge bg-success ms-2">{{ (result.similarity_score * 100)|round(1) }}% match</span>
+                            </h6>
+                        </div>
+                        <div class="text-muted small">
+                            <i class="fas fa-user"></i> {{ result.patient_id }} | 
+                            <i class="fas fa-calendar"></i> {{ result.admission_date }}
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6 class="text-primary">
+                                    <i class="fas fa-stethoscope"></i> Diagnosis: {{ result.diagnosis }}
+                                </h6>
+                                <div class="document-preview">
+                                    <p class="text-muted">{{ result.document }}</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="metadata">
+                                    <small class="text-muted">
+                                        <strong>Patient ID:</strong> {{ result.patient_id }}<br>
+                                        <strong>Admission Date:</strong> {{ result.admission_date }}<br>
+                                        <strong>Similarity Score:</strong> {{ result.similarity_score }}<br>
+                                        <strong>Distance:</strong> {{ result.distance }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Expandable full document -->
+                        <div class="mt-3">
+                            <button class="btn btn-sm btn-outline-secondary" type="button" 
+                                    data-bs-toggle="collapse" 
+                                    data-bs-target="#full-doc-{{ loop.index }}" 
+                                    aria-expanded="false">
+                                <i class="fas fa-expand"></i> View Full Document
+                            </button>
+                        </div>
+                        
+                        <div class="collapse mt-3" id="full-doc-{{ loop.index }}">
+                            <div class="card card-body bg-light">
+                                <pre class="mb-0 small">{{ result.full_document }}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% elif not error %}
+        <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle"></i> No results found for your search query. Try different terms or check your filters.
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Auto-highlight search terms in results
+    document.addEventListener('DOMContentLoaded', function() {
+        const query = "{{ query }}";
+        const terms = query.toLowerCase().split(' ');
+        
+        document.querySelectorAll('.document-preview p').forEach(function(element) {
+            let text = element.innerHTML;
+            terms.forEach(function(term) {
+                if (term.length > 2) {
+                    const regex = new RegExp('(' + term + ')', 'gi');
+                    text = text.replace(regex, '<mark>$1</mark>');
+                }
+            });
+            element.innerHTML = text;
+        });
+    });
+</script>
+{% endblock %}

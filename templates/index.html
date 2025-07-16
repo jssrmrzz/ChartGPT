@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}Medical Document Search{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0"><i class="fas fa-search"></i> Search Medical Documents</h4>
+            </div>
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('search') }}">
+                    <div class="mb-3">
+                        <label for="query" class="form-label">Search Query</label>
+                        <input type="text" class="form-control" id="query" name="query" 
+                               placeholder="Enter medical terms, symptoms, or diagnosis..." 
+                               required autocomplete="off">
+                        <div class="form-text">
+                            Examples: "heart attack", "diabetes complications", "lung cancer treatment"
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="n_results" class="form-label">Number of Results</label>
+                                <select class="form-select" id="n_results" name="n_results">
+                                    <option value="5" selected>5 results</option>
+                                    <option value="10">10 results</option>
+                                    <option value="15">15 results</option>
+                                    <option value="20">20 results</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="patient_id" class="form-label">Patient ID (Optional)</label>
+                                <input type="text" class="form-control" id="patient_id" name="patient_id" 
+                                       placeholder="e.g., 10076">
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="start_date" class="form-label">Start Date (Optional)</label>
+                                <input type="date" class="form-control" id="start_date" name="start_date">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="end_date" class="form-label">End Date (Optional)</label>
+                                <input type="date" class="form-control" id="end_date" name="end_date">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-search"></i> Search Documents
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-info-circle"></i> How to Use</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> Enter medical terms or symptoms in the search box</li>
+                        <li><i class="fas fa-check text-success"></i> Optionally filter by patient ID or date range</li>
+                        <li><i class="fas fa-check text-success"></i> Results are ranked by semantic similarity</li>
+                        <li><i class="fas fa-check text-success"></i> Click on results to view full medical reports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

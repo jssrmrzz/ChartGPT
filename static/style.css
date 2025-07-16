@@ -1,0 +1,197 @@
+/* Custom styles for Medical Document Search */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+    border-bottom: none;
+    padding: 1.25rem;
+}
+
+.btn {
+    border-radius: 8px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #007bff, #0056b3);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #0056b3, #004085);
+}
+
+.form-control, .form-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+}
+
+.result-card {
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #007bff;
+}
+
+.result-card .card-header {
+    background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+    border-bottom: 1px solid #dee2e6;
+}
+
+.document-preview {
+    max-height: 150px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 3px solid #007bff;
+}
+
+.metadata {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+mark {
+    background-color: #fff3cd;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+}
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-danger {
+    background: linear-gradient(45deg, #f8d7da, #f5c6cb);
+    color: #721c24;
+}
+
+.alert-info {
+    background: linear-gradient(45deg, #d1ecf1, #bee5eb);
+    color: #0c5460;
+}
+
+.alert-success {
+    background: linear-gradient(45deg, #d4edda, #c3e6cb);
+    color: #155724;
+}
+
+footer {
+    margin-top: auto;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .result-card .card-header {
+        padding: 1rem;
+    }
+    
+    .document-preview {
+        max-height: 200px;
+    }
+}
+
+/* Loading animation */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Hover effects for interactive elements */
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #fff !important;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+/* Custom scrollbar */
+.document-preview::-webkit-scrollbar {
+    width: 6px;
+}
+
+.document-preview::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.document-preview::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.document-preview::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
