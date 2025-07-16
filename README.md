@@ -76,6 +76,7 @@ This project allows for:
 * Dataset used: https://www.kaggle.com/datasets/ihssanened/mimic-iii-clinical-databaseopen-access/data
 
 ⸻
+
 🤖 What is Embedding?
 
 Embedding is the process of turning text (like a medical note or user question) into a vector — a list of numbers that captures the meaning of the text.
