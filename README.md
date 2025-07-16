@@ -76,3 +76,27 @@ This project allows for:
 * Dataset used: https://www.kaggle.com/datasets/ihssanened/mimic-iii-clinical-databaseopen-access/data
 
 ⸻
+🤖 What is Embedding?
+
+Embedding is the process of turning text (like a medical note or user question) into a vector — a list of numbers that captures the meaning of the text.
+
+For example:
+	•	"chest pain" → [0.12, -0.34, 0.98, ...]
+	•	"heart discomfort" → [0.11, -0.33, 0.97, ...]
+
+Even though the words are different, the embeddings are close together because the meanings are similar. This is what allows semantic search — finding things based on meaning, not just exact words.
+
+⸻
+
+📦 Why Use a Vector Database?
+
+A vector database (like ChromaDB) is designed to:
+*	Store these embeddings alongside metadata (like patient ID or date)
+*	Quickly search for the most similar vectors (using methods like cosine similarity)
+
+In this project, we:
+*	Embed all medical notes into vectors and store them
+*	Embed a user query the same way
+*	Use the vector DB to find notes with similar embeddings, i.e., similar meaning
+
+Without a vector database, comparing the query to thousands of notes would be very slow and inefficient.
